@@ -1,23 +1,36 @@
 // rafce
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
+import { useDispatch } from 'react-redux';
+import { authActions } from '../../store/auth';
+import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
-  const [UserData, setUserData] = useState();
-
+  const [UserData, setUserData] = useState({username: "", email: ""});
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchUserDetails = async () => {
       try {
         const res = await axios.get("http://localhost:1000/api/v1/user-details", {
           withCredentials: true
         });
-        setUserData(res.data.user); 
+        setUserData(prevUserData => ({...prevUserData, ...res.data.user}));
       } catch (error) {
         console.error("Error fetching user details:", error);
       }
     };
     fetchUserDetails();
   }, []);
+  const LogOutHandler = async()=>{
+    const res = await axios.post("http://localhost:1000/api/v1/logout",
+    {withCredentials: true
+
+    });
+    console.log(res);
+    dispatch(authActions.logout());
+    navigate("/");
+  };
   return (
     <>
       {UserData && (
@@ -30,7 +43,8 @@ const Header = () => {
             <p className="text-zinc-300 mt-1">{UserData.email}</p>
           </div> 
           <div>
-            <button className="bg-white px-4 py-2 rounded text-zinc-800 font-semibold hover:shadow-xl transition-all duration-300">
+            <button className="bg-white px-4 py-2 rounded text-zinc-800 font-semibold hover:shadow-xl transition-all duration-300" 
+            onClick={LogOutHandler}>
               Log Out
             </button>
           </div>

@@ -33,7 +33,7 @@ const Navbar = () => {
             <Link 
               key={i} 
               to={item.path} 
-              className="text-lg font-semibold hover:underline hover:text-green-700"
+              className="text-xl font-semibold hover:underline hover:text-green-700"
             >
               {item.name}
             </Link>

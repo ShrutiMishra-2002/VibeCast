@@ -1,4 +1,4 @@
-const express = require("express")
+const express = require("express");
 const app = express();
 const userApi = require("./routes/user");
 const cookieParser = require("cookie-parser");
@@ -8,11 +8,12 @@ const cors = require("cors");
 require("dotenv").config();
 require("./conn/conn");
 app.use(cors({
-    origin: 'http://127.0.0.1:5173',
+    origin: ["http://127.0.0.1:5173"],
     credentials: true,               
   }));
 app.use(express.json());
 app.use(cookieParser());
+app.use("/uploads",express.static("uploads"));
 
 //all routes
 app.use("/api/v1",userApi);

@@ -1,22 +1,21 @@
 const multer = require("multer");
-//set  storage
+
+// Set storage
 const storage = multer.diskStorage({
-    destination: (req,file,cb)=>
-    {
+    destination: (req, file, cb) => {
         cb(null, "uploads/");
     },
-    filename:(req,file,cb) =>{
-        cb(null,`${Data.now()}-${file.originalname}}`);
+    filename: (req, file, cb) => {
+        cb(null, `${Date.now()}-${file.originalname}`);
     },
-
 });
-//initialize upload
-const upload  = multer({
-    storage:storage,
 
+// Initialize upload
+const upload = multer({
+    storage: storage,
 }).fields([
-    {name: "fromtImage", maxCount:1},
-    {name: "audioFile", maxCount:1},
+    { name: "frontImage", maxCount: 1 }, // Fixed typo here
+    { name: "audioFile", maxCount: 1 },
 ]);
 
 module.exports = upload;

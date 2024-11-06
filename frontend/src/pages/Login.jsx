@@ -28,7 +28,7 @@ const Login = () =>{
     try {
       const res = await axios.post(
         "http://localhost:1000/api/v1/sign-in",
-        values
+        values , { withCredentials : true }
       );
       dispatch(authActions.login());
     //   console.log(res.data);
@@ -47,14 +47,14 @@ const Login = () =>{
         </Link>
         <div className="mt-6 w-full">
             <div className="w-full flex flex-col mt-2">
-                <label htmlFor="">Email</label>
-                <input type="text" className="mt-2 px-2 py-2 rounded outline-none border border-black " 
+                <label htmlFor="email">Email</label>
+                <input id="email" type="text" className="mt-2 px-2 py-2 rounded outline-none border border-black " 
                 required placeholder="Email" name="email" value={values.email} onChange={change}
                 />
             </div>
             <div className="w-full flex flex-col mt-2">
-                <label htmlFor="">Password</label>
-                <input type="password" className="mt-2 px-2 py-2 rounded outline-none border border-black " 
+                <label htmlFor="password">Password</label>
+                <input id="password" type="password" className="mt-2 px-2 py-2 rounded outline-none border border-black " 
                 required placeholder="Password" name="password" value={values.password} onChange={change}
                 />
             </div>

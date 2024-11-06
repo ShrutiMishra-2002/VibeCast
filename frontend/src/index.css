@@ -2,7 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
-  padding:0px;
-  height: 0px;
+/* Custom Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Track color */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888; /* Scrollbar thumb color */
+  border-radius: 4px; /* Rounded corners for the scrollbar */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Darker shade when hovering over the scrollbar */
 }
