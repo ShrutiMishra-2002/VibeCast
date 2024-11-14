@@ -10,7 +10,7 @@ const DescriptionPage = () => {
 
     useEffect(() => {
         const fetch = async () => {
-            const res = await axios.get(`http://localhost:1000/api/v1/get-podcasts/${id}`, {
+            const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/v1/get-podcasts/${id}`, {
                 withCredentials: true
             });
             setPodcasts(res.data.data);
@@ -25,7 +25,7 @@ const DescriptionPage = () => {
                     {/* Image Section */}
                     <div className="w-full md:w-2/6 flex items-center justify-center md:justify-start">
                         <img 
-                            src={`http://localhost:1000/${Podcasts.frontImage}`} 
+                            src={`${process.env.REACT_APP_SERVER_URL}/${Podcasts.frontImage}`} 
                             alt="/" 
                             className="rounded w-full h-[40vh] sm:h-[50vh] object-cover" 
                         />

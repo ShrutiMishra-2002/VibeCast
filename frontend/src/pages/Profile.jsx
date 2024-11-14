@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import ErrorPage from "./Errorpage";
+import ErrorPage from "/ErrorPage.jsx";
 import Header from "../components/Profile/Header";
 import YourPodcasts from "../components/Profile/YourPodcasts";
 const Profile = ()=>{

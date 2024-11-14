@@ -22,7 +22,7 @@ const App = () => {
  const fetch = async () =>{
 try{
  const res = await axios.get(
-  "http://localhost:1000/api/v1/check-cookie",
+  "${process.env.REACT_APP_SERVER_URL}/api/v1/check-cookie",
   {withCredentials : true}
 );
  if(res.data.message == true)

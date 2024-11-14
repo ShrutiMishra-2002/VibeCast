@@ -23,7 +23,7 @@ const Signup = () => {
     event.preventDefault(); // Prevents the default form submission behavior
     try {
       const res = await axios.post(
-        "http://localhost:1000/api/v1/sign-up",
+        "${process.env.REACT_APP_SERVER_URL}/api/v1/sign-up",
         values
       );
       // toast.success(res.data.message);

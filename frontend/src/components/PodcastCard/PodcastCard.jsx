@@ -14,8 +14,8 @@ const PodcastCard = ({ items, onDelete }) => {
     if (isLoggedIn) {
       e.preventDefault();
       dispatch(playerActions.setDiv());
-      dispatch(playerActions.changeImage(`http://localhost:1000/${items.frontImage}`));
-      dispatch(playerActions.changeSong(`http://localhost:1000/${items.audioFile}`));
+      dispatch(playerActions.changeImage(`${process.env.REACT_APP_SERVER_URL}/${items.frontImage}`));
+      dispatch(playerActions.changeSong(`${process.env.REACT_APP_SERVER_URL}/${items.audioFile}`));
       toast.info("Playing podcast!", { autoClose: 2000 });
     } else {
       toast.warn("Please log in to play the podcast.", { autoClose: 2000 });
@@ -24,7 +24,6 @@ const PodcastCard = ({ items, onDelete }) => {
 
   // Handle deleting the podcast with a custom toast confirmation
   const handleDelete = async () => {
-    // Show a custom toast confirmation
     const deleteToast = toast(
       <div>
         <p>Are you sure you want to delete this podcast?</p>
@@ -58,7 +57,7 @@ const PodcastCard = ({ items, onDelete }) => {
       <Link to={`/description/${items._id}`}>
         <div>
           <img
-            src={`http://localhost:1000/${items.frontImage}`}
+            src={`${process.env.REACT_APP_SERVER_URL}/${items.frontImage}`}
             alt={items.title}
             className="rounded-t-md w-full h-[30vh] object-fill"
           />

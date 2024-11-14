@@ -4,7 +4,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 // Async action to delete a podcast
 export const deletePodcast = (id, onDelete) => async (dispatch) => {
   try {
-    await axios.delete(`http://localhost:1000/api/v1/podcast/${id}`, {withCredentials: true});
+    await axios.delete(`${process.env.REACT_APP_SERVER_URL}/api/v1/podcast/${id}`, {withCredentials: true});
     dispatch(playerActions.removePodcast(id));
     if (onDelete) onDelete(id); // Call the callback after successful deletion
   } catch (error) {
