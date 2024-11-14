@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 import { useSelector } from "react-redux";
-import ErrorPage from './Errorpage';
+import ErrorPage from './ErrorPage.jsx';
 import InputPodcast from '../components/AddPodcast/InputPodcast';
 // import AllPodcasts from "../pages/AllPodcast"
 const AddPodcast = () => {

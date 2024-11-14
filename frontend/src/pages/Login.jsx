@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { authActions } from "../store/auth";
-import ErrorPage from "./Errorpage";
+import ErrorPage from "./ErrorPage.jsx";
 
 
 const Login = () =>{
