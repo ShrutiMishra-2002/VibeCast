@@ -22,7 +22,7 @@ const App = () => {
  const fetch = async () =>{
 try{
  const res = await axios.get(
-  `${process.env.REACT_APP_SERVER_URL}/api/v1/check-cookie`,
+  `https://vibecast-v9sc.onrender.com/api/v1/check-cookie`,
   {withCredentials : true}
 );
  if(res.data.message == true)

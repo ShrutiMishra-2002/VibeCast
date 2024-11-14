@@ -52,7 +52,7 @@ const InputPodcast = () => {
     data.append("audioFile", audioFile);
 
     try {
-      const res = await axios.post(`${process.env.REACT_APP_SERVER_URL}/api/v1/add-podcasts`, data, {
+      const res = await axios.post(`https://vibecast-v9sc.onrender.com/api/v1/add-podcasts`, data, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -162,7 +162,7 @@ const InputPodcast = () => {
                 <option value="Business">Business</option>
                 <option value="Education">Education</option>
                 {/* Not working Hobbies */}
-                <option value="Hobbies">Hobbies</option> 
+                {/* <option value="Hobbies">Hobbies</option>  */}
                 <option value="Government">Government</option>
               </select>
             </div>

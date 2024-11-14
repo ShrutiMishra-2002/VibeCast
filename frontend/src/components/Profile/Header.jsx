@@ -12,7 +12,7 @@ const Header = () => {
   useEffect(() => {
     const fetchUserDetails = async () => {
       try {
-        const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/v1/user-details`, {
+        const res = await axios.get(`https://vibecast-v9sc.onrender.com/api/v1/user-details`, {
           withCredentials: true
         });
         setUserData(prevUserData => ({...prevUserData, ...res.data.user}));
@@ -23,7 +23,7 @@ const Header = () => {
     fetchUserDetails();
   }, []);
   const LogOutHandler = async()=>{
-    const res = await axios.post(`${process.env.REACT_APP_SERVER_URL}/api/v1/logout`,
+    const res = await axios.post(`https://vibecast-v9sc.onrender.com/api/v1/logout`,
     {withCredentials: true
 
     });
