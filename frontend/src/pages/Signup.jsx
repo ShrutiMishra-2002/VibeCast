@@ -23,7 +23,7 @@ const Signup = () => {
     event.preventDefault(); // Prevents the default form submission behavior
     try {
       const res = await axios.post(
-        `${process.env.REACT_APP_SERVER_URL}/api/v1/sign-up`,
+        `https://vibecast-backend-4qhm.onrender.com/api/v1/sign-up`,
         values
       );
       // toast.success(res.data.message);

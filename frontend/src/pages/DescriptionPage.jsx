@@ -25,7 +25,7 @@ const DescriptionPage = () => {
                     {/* Image Section */}
                     <div className="w-full md:w-2/6 flex items-center justify-center md:justify-start">
                         <img 
-                            src={`${process.env.REACT_APP_SERVER_URL}/${Podcasts.frontImage}`} 
+                            src={`https://vibecast-backend-4qhm.onrender.com/${Podcasts.frontImage}`} 
                             alt="/" 
                             className="rounded w-full h-[40vh] sm:h-[50vh] object-cover" 
                         />

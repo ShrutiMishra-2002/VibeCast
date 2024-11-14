@@ -10,7 +10,7 @@ const YourPodcasts = () => {
   useEffect(() => {
     const fetch = async () => {
       try {
-        const res = await axios.get(`https://vibecast-v9sc.onrender.com/api/v1/get-user-podcasts`, {
+        const res = await axios.get(`https://vibecast-backend-4qhm.onrender.com/api/v1/get-user-podcasts`, {
           withCredentials: true
         });
         setPodcasts(res.data.data);

@@ -52,7 +52,7 @@ const InputPodcast = () => {
     data.append("audioFile", audioFile);
 
     try {
-      const res = await axios.post(`https://vibecast-v9sc.onrender.com/api/v1/add-podcasts`, data, {
+      const res = await axios.post(`https://vibecast-backend-4qhm.onrender.com/api/v1/add-podcasts`, data, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

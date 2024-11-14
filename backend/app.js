@@ -8,7 +8,7 @@ const cors = require("cors");
 require("dotenv").config();
 require("./conn/conn");
 app.use(cors({
-    origin: ["http://127.0.0.1:5173", "https://vibecast-v9sc.onrender.com"],
+    origin: ["http://localhost:5173", "https://vibecast-v9sc.onrender.com"],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,               
   }));

@@ -14,8 +14,8 @@ const PodcastCard = ({ items, onDelete }) => {
     if (isLoggedIn) {
       e.preventDefault();
       dispatch(playerActions.setDiv());
-      dispatch(playerActions.changeImage(`https://vibecast-v9sc.onrender.com/${items.frontImage}`));
-      dispatch(playerActions.changeSong(`https://vibecast-v9sc.onrender.com/${items.audioFile}`));
+      dispatch(playerActions.changeImage(`https://vibecast-backend-4qhm.onrender.com/${items.frontImage}`));
+      dispatch(playerActions.changeSong(`https://vibecast-backend-4qhm.onrender.com/${items.audioFile}`));
       toast.info("Playing podcast!", { autoClose: 2000 });
     } else {
       toast.warn("Please log in to play the podcast.", { autoClose: 2000 });
@@ -57,7 +57,7 @@ const PodcastCard = ({ items, onDelete }) => {
       <Link to={`/description/${items._id}`}>
         <div>
           <img
-            src={`https://vibecast-v9sc.onrender.com/${items.frontImage}`}
+            src={`https://vibecast-backend-4qhm.onrender.com/${items.frontImage}`}
             alt={items.title}
             className="rounded-t-md w-full h-[30vh] object-fill"
           />

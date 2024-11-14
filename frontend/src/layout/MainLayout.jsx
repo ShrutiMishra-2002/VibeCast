@@ -7,7 +7,7 @@ const MainLayout = () =>{
   return (
     <div className="relative">
         <Navbar />
-        <main>
+        <main className="h-screen">
         <Outlet />
         </main>
         <div className="w-full">
