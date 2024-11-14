@@ -6,7 +6,7 @@ const AllPodcasts = () => {
     const [Podcasts, setPodcasts] = useState();
     useEffect(()=>{
         const fetch = async()=>{
-           const res = await axios.get("${process.env.REACT_APP_SERVER_URL}/api/v1/get-podcasts");
+           const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/v1/get-podcasts`);
            setPodcasts(res.data.data);
         };
         fetch();
