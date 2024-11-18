@@ -5,9 +5,9 @@ import AudioPlayer from '../components/AudioPlayer/AudioPlayer';
 import Footer from '../components/Footer/Footer';
 const MainLayout = () =>{
   return (
-    <div className="relative">
+    <div className="relative min-h-screen">
         <Navbar />
-        <main className="h-screen">
+        <main className="">
         <Outlet />
         </main>
         <div className="w-full">

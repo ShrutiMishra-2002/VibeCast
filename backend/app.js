@@ -7,9 +7,17 @@ const PodcastApi = require("./routes/podcast");
 const cors = require("cors");
 require("dotenv").config();
 require("./conn/conn");
+
+const allowedOrigins = ["http://localhost:5173", "https://vibecast-v9sc.onrender.com"];
+
 app.use(cors({
-    origin: ["http://localhost:5173", "https://vibecast-v9sc.onrender.com"],
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    origin: (origin, callback) => {
+      if(!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
     credentials: true,               
   }));
 app.use(express.json());
