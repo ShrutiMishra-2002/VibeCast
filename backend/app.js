@@ -18,11 +18,14 @@ app.use(cors({
         callback(new Error('Not allowed by CORS'));
       }
     },
-    credentials: true,               
+    credentials: true,   
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    allowedHeaders: "Content-Type"            
   }));
 app.use(express.json());
 app.use(cookieParser());
 app.use("/uploads",express.static("uploads"));
+app.options("*", cors());
 
 //all routes
 app.use("/api/v1",userApi);
