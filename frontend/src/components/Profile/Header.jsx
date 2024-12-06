@@ -9,6 +9,7 @@ const Header = () => {
   const [UserData, setUserData] = useState({username: "", email: ""});
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  
   useEffect(() => {
     const fetchUserDetails = async () => {
       try {
@@ -22,10 +23,11 @@ const Header = () => {
     };
     fetchUserDetails();
   }, []);
+
   const LogOutHandler = async()=>{
     const res = await axios.post(`https://vibecast-backend-4qhm.onrender.com/api/v1/logout`,
-    {withCredentials: true
-
+    {
+      withCredentials: true
     });
     console.log(res);
     dispatch(authActions.logout());

@@ -103,6 +103,8 @@ router.post("/sign-in", async (req, res) => {
 router.post("/logout", async (req, res) => {
   res.clearCookie("podcasterUserToken", {
     httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "None",
   });
   res.status(200).json({ message: "Logged out" });
 });
