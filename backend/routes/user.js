@@ -4,43 +4,35 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const authMiddleware = require("../middleware/authMiddleware");
 
-// Signup route
 router.post("/sign-up", async (req, res) => {
   try {
     const { username, email, password } = req.body;
 
-    // Validate required fields
     if (!username || !email || !password) {
       return res.status(400).json({ message: "All fields are required" });
     }
 
-    // Validate username length
     if (username.length < 5) {
       return res.status(400).json({ message: "Username must have at least 5 characters" });
     }
 
-    // Validate password length
     if (password.length < 6) {
       return res.status(400).json({ message: "Password must have at least 6 characters" });
     }
 
-    // Check if email or username already exists
-    const existingEmail = await User.findOne({ email : email });
-    const existingUsername = await User.findOne({ username : username});
+    const existingEmail = await User.findOne({ email: email });
+    const existingUsername = await User.findOne({ username: username });
 
     if (existingEmail || existingUsername) {
       return res.status(400).json({ message: "Username or Email already exists" });
     }
 
-    // Hash password
     const salt = await bcrypt.genSalt(10);
     const hashedPass = await bcrypt.hash(password, salt);
 
-    // Create a new user
     const newUser = new User({ username, email, password: hashedPass });
     await newUser.save();
 
-    // Respond with a success message
     return res.status(201).json({ message: "Account created successfully" });
   } catch (error) {
     console.error(error);
@@ -48,45 +40,38 @@ router.post("/sign-up", async (req, res) => {
   }
 });
 
-// Sign-in route
 router.post("/sign-in", async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    // Validate required fields
     if (!email || !password) {
       return res.status(400).json({ message: "All fields are required" });
     }
 
-    // Check if the user exists
-    const existingUser = await User.findOne({ email : email });
+    const existingUser = await User.findOne({ email: email });
 
     if (!existingUser) {
       return res.status(400).json({ message: "Username or Email does not exist" });
     }
 
-    // Check if the password matches
     const isMatch = await bcrypt.compare(password, existingUser.password);
     if (!isMatch) {
       return res.status(400).json({ message: "Invalid credentials" });
     }
 
-    // Generate JWT token
     const token = jwt.sign(
       { id: existingUser._id, email: existingUser.email },
       process.env.JWT_SECRET,
       { expiresIn: "30d" }
     );
 
-    // Set the JWT token as an HTTP-only cookie
     res.cookie("podcasterUserToken", token, {
       httpOnly: true,
-      maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
-      secure: process.env.NODE_ENV === "production", // Secure in production
-      sameSite: "None", // Ensures the cookie is sent with cross-site requests
+      maxAge: 30 * 24 * 60 * 60 * 1000,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "None",
     });
 
-    // Respond with the user info and success message
     return res.status(200).json({
       id: existingUser._id,
       username: existingUser.username,
@@ -99,7 +84,6 @@ router.post("/sign-in", async (req, res) => {
   }
 });
 
-// Logout route
 router.post("/logout", async (req, res) => {
   res.clearCookie("podcasterUserToken", {
     httpOnly: true,
@@ -109,7 +93,6 @@ router.post("/logout", async (req, res) => {
   res.status(200).json({ message: "Logged out" });
 });
 
-// Checking if cookie is available or not
 router.get("/check-cookie", async (req, res) => {
   const token = req.cookies.podcasterUserToken;
   if (token) {
@@ -118,12 +101,10 @@ router.get("/check-cookie", async (req, res) => {
   return res.status(200).json({ message: false });
 });
 
-// Route to fetch user details
-router.get("/user-details",authMiddleware, async (req, res) => {
-  
+router.get("/user-details", authMiddleware, async (req, res) => {
   try {
     const { email } = req.user;
-    const existingUser = await User.findOne({ email : email }).select("-password");
+    const existingUser = await User.findOne({ email: email }).select("-password");
     return res.status(200).json({
       user: existingUser,
     });
