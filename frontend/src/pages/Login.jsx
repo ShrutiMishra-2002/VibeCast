@@ -45,7 +45,7 @@ const Login = () =>{
         <Link to ="/" className="text-2xl font-bold">
            VibeCast
         </Link>
-        <div className="mt-6 w-full">
+        <form onSubmit={handleSubmit} className="mt-6 w-full">
             <div className="w-full flex flex-col mt-2">
                 <label htmlFor="email">Email</label>
                 <input id="email" type="text" className="mt-2 px-2 py-2 rounded outline-none border border-black " 
@@ -59,7 +59,7 @@ const Login = () =>{
                 />
             </div>
             <div className="w-full flex flex-col mt-4">
-                <button className="bg-[#2F2E41] font-semibold text-xl text-white rounded py-2" onClick={handleSubmit}>
+                <button className="bg-[#2F2E41] font-semibold text-xl text-white rounded py-2">
                     Login
                 </button>
             </div>
@@ -71,7 +71,7 @@ const Login = () =>{
                 </Link>
                </p>
             </div>
-        </div>
+        </form>
         </div>
     </div> }
     </>
